@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Search Engines</title>
+    <style>
+        *{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body{
+            background-color: rgb(230, 230, 230);
+            user-select: none;
+        }
+        #searchcon2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #searchcon3{
+            box-shadow: 2px 3px 7px 2px rgb(0 0 0 / 20%);
+            background-color: white;
+            display: inline;
+            padding: 25px;
+            width: 75%;
+            border-radius: 5px;
+        }
+        #search{
+            width: 87%;
+            height: 50px;
+            font-size: 2em;
+            padding-left: 15px;
+            border: 1px solid grey;
+            border-radius: 5px 0px 0px 5px;
+        }
+        #searchtitle{
+            text-align: center;
+            display: block;
+            font-weight: bold;
+            margin-bottom: 50px;
+            font-size: 3em;
+
+        }
+        #searchbtn{
+            font-size: 1.1em;
+            font-weight: bold;
+            width: 10%;
+            height: 54px;
+            position: relative;
+            top: -6px;
+            background-color: rgb(73, 248, 111);
+            border: grey 1px solid;
+            left: -6px;
+            cursor: pointer;
+            border-radius: 0px 20px 20px 0px;
+        }
+        #radiocon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+        }
+        #radiocon input{
+            font-size: 1.5em;
+            margin-left: 50px;
+            appearance: none;
+        }
+        #radiocon label{
+            font-size: 1.5em;
+        }
+        .margin-0{
+            margin: 0;
+        }
+        .style-1{
+            color: white !important;
+            background-color: rgb(132, 132, 255);
+            padding: 0 10px 0 10px;
+            border-radius: 5px;
+        }
+        .dp-inline{
+            display: inline !important;
+        }
+        #checkboxcon1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+        }
+        #checkboxcon1 label{
+            font-size: 1.3em;
+            padding: 10px 6px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchcon">
+            <div id="searchcon2">
+                <div id="searchcon3">
+                    <span id="searchtitle">YEŞ Search</span>
+                        <input type="text" id="search" placeholder="Write what you want?" class="search" autocomplete="off">
+                        <button id="searchbtn" onmouseover="search()">Search</button>
+                        <div id="checkboxcon1">
+                            <input type="checkbox" id="othertab" style="appearance: none;"><label for="othertab" onmouseover="othertab()" id="othertablabel">New Tab</label>
+                        </div>
+                        <div id="radiocon">
+                            
+                                <input type="radio" name="engine" id="all" class="margin-0"><label for="all" id="all-label" onmouseover="allcon()">All</label>
+                            
+                            
+                                <input type="radio" name="engine" id="google"><label for="google" onmouseover="googlecon()" id="googlecon">Google</label>
+                           
+                             
+                                <input type="radio" name="engine" id="bing"><label for="bing" onmouseover="bingcon()" id="bingcon">Bing</label> 
+                            
+                            
+                                <input type="radio" name="engine" id="yandex"><label for="yandex" onmouseover="yandexcon()" id="yandexcon">Yandex</label>
+
+                                <input type="radio" name="engine" id="yahoo"><label for="yahoo" onmouseover="yahoocon()" id="yahoocon">Yahoo!</label>
+                                                                                
+                        </div>
+                        
+                 </div>
+            </div>
+    </div>
+    <script>
+        // Local Variables
+        var alllabelcount;
+        var googlelabelcount;
+        var yandexlabelcount;
+        var binglabelcount;
+        var yahoolabelcount;
+
+        var searchinp1;
+        //
+        document.getElementById("search").focus()
+        document.addEventListener("keypress", function(event) {
+        if (event.keyCode == 13) {
+            search();
+        }
+        });
+        var othertabcount;
+        othertab();
+        //
+        if (othertabcount == 1){
+            document.getElementById("othertab").checked = true;
+            
+        }
+        //
+
+        function othertab(){
+            document.getElementById("othertablabel").classList.toggle("style-1");
+            if (othertabcount == 1){
+                othertabcount = 0;
+                document.getElementById("othertab").checked = false
+            }
+            else{
+                othertabcount = 1;
+                document.getElementById("othertab").checked = true
+            }
+            document.getElementById("search").focus()
+        }
+        function allcon(){
+            document.getElementById("all-label").classList.toggle("style-1")
+            document.getElementById("bingcon").classList.remove("style-1")
+            document.getElementById("googlecon").classList.remove("style-1")
+            document.getElementById("yandexcon").classList.remove("style-1")
+            document.getElementById("yahoocon").classList.remove("style-1")
+            document.getElementById("search").focus()
+            alllabelcount = 1;
+            googlelabelcount = 0;
+            yandexlabelcount = 0;
+            yahoolabelcount = 0;
+            binglabelcount = 0;
+            
+        }
+        function bingcon(){
+            document.getElementById("bingcon").classList.toggle("style-1")
+            document.getElementById("all-label").classList.remove("style-1")
+            document.getElementById("googlecon").classList.remove("style-1")
+            document.getElementById("yandexcon").classList.remove("style-1")
+            document.getElementById("yahoocon").classList.remove("style-1")
+            document.getElementById("search").focus()
+            alllabelcount = 0;
+            googlelabelcount = 0;
+            yandexlabelcount = 0;
+            yahoolabelcount = 0;
+            binglabelcount = 1;
+        }
+        function googlecon(){
+            document.getElementById("googlecon").classList.toggle("style-1")
+            document.getElementById("all-label").classList.remove("style-1")
+            document.getElementById("bingcon").classList.remove("style-1")
+            document.getElementById("yandexcon").classList.remove("style-1")
+            document.getElementById("yahoocon").classList.remove("style-1")
+            document.getElementById("search").focus()
+            alllabelcount = 0;
+            googlelabelcount = 1;
+            yandexlabelcount = 0;
+            yahoolabelcount = 0;
+            binglabelcount = 0;
+            // paste to goole shortcut
+        }
+        function yandexcon(){
+            document.getElementById("yandexcon").classList.toggle("style-1")
+            document.getElementById("all-label").classList.remove("style-1")
+            document.getElementById("bingcon").classList.remove("style-1")
+            document.getElementById("googlecon").classList.remove("style-1")
+            document.getElementById("yahoocon").classList.remove("style-1")
+            document.getElementById("search").focus()
+            alllabelcount = 0;
+            googlelabelcount = 0;
+            yandexlabelcount = 1;
+            yahoolabelcount = 0;
+            binglabelcount = 0;
+        }
+        function yahoocon(){
+            document.getElementById("yandexcon").classList.remove("style-1")
+            document.getElementById("all-label").classList.remove("style-1")
+            document.getElementById("bingcon").classList.remove("style-1")
+            document.getElementById("googlecon").classList.remove("style-1")
+            document.getElementById("yahoocon").classList.toggle("style-1")
+            document.getElementById("search").focus()
+            alllabelcount = 0;
+            googlelabelcount = 0;
+            yandexlabelcount = 0;
+            yahoolabelcount = 1;
+            binglabelcount = 0;
+        }
+        function alltabcon(){
+            document
+        }
+
+        function search(){
+            var alllabel = document.getElementById("all");
+            var searchinp = document.getElementById("search").value;
+            var googlecon = document.getElementById("google");
+            var yandexcon = document.getElementById("yandex");
+            var bingcon = document.getElementById("bing");
+            var yahoocon = document.getElementById("yahoo");
+            var othertab = document.getElementById("othertab");
+            // shortcuts 
+            if(searchinp.startsWith("-g")==true){
+                document.getElementById("googlecon").classList.toggle("style-1")
+                document.getElementById("all-label").classList.remove("style-1")
+                document.getElementById("bingcon").classList.remove("style-1")
+                document.getElementById("yandexcon").classList.remove("style-1")
+                document.getElementById("yahoocon").classList.remove("style-1")
+                document.getElementById("search").focus()
+                alllabelcount = 0;
+                googlelabelcount = 1;
+                yandexlabelcount = 0;
+                yahoolabelcount = 0;
+                binglabelcount = 0;
+                searchinp1 = searchinp.replace("-g","");
+            }
+            if(searchinp.startsWith("-b")==true){
+                document.getElementById("googlecon").classList.remove("style-1")
+                document.getElementById("all-label").classList.remove("style-1")
+                document.getElementById("bingcon").classList.toggle("style-1")
+                document.getElementById("yandexcon").classList.remove("style-1")
+                document.getElementById("yahoocon").classList.remove("style-1")
+                document.getElementById("search").focus()
+                alllabelcount = 0;
+                googlelabelcount = 0;
+                yandexlabelcount = 0;
+                yahoolabelcount = 0;
+                binglabelcount = 1;
+                searchinp1 = searchinp.replace("-b","");
+            }
+            if(searchinp.startsWith("-x")==true){
+                document.getElementById("googlecon").classList.remove("style-1")
+                document.getElementById("all-label").classList.remove("style-1")
+                document.getElementById("bingcon").classList.remove("style-1")
+                document.getElementById("yandexcon").classList.toggle("style-1")
+                document.getElementById("yahoocon").classList.remove("style-1")
+                document.getElementById("search").focus()
+                alllabelcount = 0;
+                googlelabelcount = 0;
+                yandexlabelcount = 1;
+                yahoolabelcount = 0;
+                binglabelcount = 0;
+                searchinp1 = searchinp.replace("-x","");
+            }
+            if(searchinp.startsWith("-y")==true){
+                document.getElementById("googlecon").classList.remove("style-1")
+                document.getElementById("all-label").classList.remove("style-1")
+                document.getElementById("bingcon").classList.remove("style-1")
+                document.getElementById("yandexcon").classList.remove("style-1")
+                document.getElementById("yahoocon").classList.toggle("style-1")
+                document.getElementById("search").focus()
+                alllabelcount = 0;
+                googlelabelcount = 0;
+                yandexlabelcount = 0;
+                yahoolabelcount = 1;
+                binglabelcount = 0;
+                searchinp1 = searchinp.replace("-y","");
+            }
+            if(searchinp.startsWith("-a")==true){
+                document.getElementById("googlecon").classList.remove("style-1")
+                document.getElementById("all-label").classList.toggle("style-1")
+                document.getElementById("bingcon").classList.remove("style-1")
+                document.getElementById("yandexcon").classList.remove("style-1")
+                document.getElementById("yahoocon").classList.remove("style-1")
+                document.getElementById("search").focus()
+                alllabelcount = 1;
+                googlelabelcount = 0;
+                yandexlabelcount = 0;
+                yahoolabelcount = 0;
+                binglabelcount = 0;
+                searchinp1 = searchinp.replace("-a","");
+            }
+            // endwith
+            if(searchinp.endsWith("-n")==true){
+                document.getElementById("othertablabel").classList.toggle("style-1");
+                if (othertabcount == 1){
+                othertabcount = 0;
+                document.getElementById("othertab").checked = false
+                  }
+                 else{
+                othertabcount = 1;
+                document.getElementById("othertab").checked = true
+                  }
+                 document.getElementById("search").focus()
+                 searchinp1 = searchinp.replace("-n","");
+            }
+            //
+            if (alllabelcount == 1){
+                googleadres = "https://www.google.com/search?q="+searchinp1+"&oq="+searchinp1+"&aqs=chrome..69i57.800j0j1&sourceid=chrome&ie=UTF-8&safe=active";
+                bingadres = "https://www.bing.com/search?q="+searchinp1+"&form=QBLH&sp=-1&pq=&sc=0-0&qs=n&sk=&cvid=273028CD194D4F5980E0B91C5FBDD6A5&ghsh=0&ghacc=0&ghpl=&adlt=strict";
+                yandexadres = "https://yandex.com.tr/search/?lr=103862&text="+searchinp1+"&family=yes";
+                yahooadres = "https://search.yahoo.com/search?p="+searchinp1+"&fr=yfp-t&fr2=p%3Afp%2Cm%3Asb&ei=UTF-8&fp=1";
+                document.getElementById("search").value = "";
+                window.open(googleadres, "_blank")
+                window.open(bingadres, "_blank")
+                window.open(yandexadres, "_blank")
+                window.open(yahooadres, "_blank")
+            }
+            if (googlelabelcount == 1){
+                document.getElementById("search").value = "";
+                adres = "https://www.google.com/search?q="+searchinp1+"&oq="+searchinp1+"&aqs=chrome..69i57.800j0j1&sourceid=chrome&ie=UTF-8&safe=active";
+                if (othertabcount == 1){
+                    window.open(adres, "_blank")
+                }
+                else{
+                    window.location = adres;
+                }
+            }
+            if (binglabelcount == 1){
+                document.getElementById("search").value = "";
+                adres = "https://www.bing.com/search?q="+searchinp1+"&form=QBLH&sp=-1&pq=&sc=0-0&qs=n&sk=&cvid=273028CD194D4F5980E0B91C5FBDD6A5&ghsh=0&ghacc=0&ghpl=&adlt=strict"
+                if (othertabcount == 1){
+                    window.open(adres, "_blank")
+                }
+                else{
+                    window.location = adres;
+                }
+            }
+            if (yandexlabelcount == 1){
+                document.getElementById("search").value = "";
+                adres = "https://yandex.com.tr/search/?lr=103862&text="+searchinp1+"&family=yes";
+                if (othertabcount == 1){
+                    window.open(adres, "_blank");
+                }
+                else{
+                    window.location = adres;
+                }
+            }
+            if (yahoolabelcount == 1){
+                document.getElementById("search").value = "";
+                adres = "https://search.yahoo.com/search?p="+searchinp1+"&fr=yfp-t&fr2=p%3Afp%2Cm%3Asb&ei=UTF-8&fp=1";
+                if (othertabcount == 1){
+                    window.open(adres, "_blank");
+                }
+                else{
+                    window.location = adres;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
